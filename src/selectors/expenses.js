@@ -2,13 +2,14 @@
 // January 1st 1970 (unix epoch)
 // 34000, 10 , -235
 
-
+import moment from 'moment';
 
 // Get visible expenses
 export default (expenses, { text, sortBy, startDate, endDate}) => {
     return expenses.filter((expense) => {
-        const startDataMatch = typeof startDate !== 'number' || expense.createdAt >= startDate;
-        const endDateMatch = typeof endDate !== 'number' ||  expense.createdAt <= startDate;
+        const createdAtMoment = moment(expense.createdAt)
+        const startDataMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day'): true;
+        const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day'): true;
 
         // figure out if expense.description as the text variable string inside of it
         // use includes

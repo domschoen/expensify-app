@@ -450,6 +450,60 @@ yarn add moment@2.18.1 react-dates@12.7.0 react-addons-shallow-compare@15.6.0
 
 
 
+# Testing
+
+## Jest
+
+released by Facebook and integrate well with React
+
+The are other like Jasmin, Mocka if you work with Node. Karma if you work with Angular. They are great but they serve their own purpose and specific environment.
+
+google: jest testing
+
+https://jestjs.io/
+
+```
+yarn add jest@20.0.4
+```
+
+in package.json
+
+in "scripts", add 
+
+```
+"test": "jest"
+```
+
+### Run the test
+
+```
+$ yarn test
+yarn run v1.22.4
+$ jest
+No tests found
+In /Users/dschoen/Documents/gitlab/expensify-app
+  28 files checked.
+  testMatch: **/__tests__/**/*.js?(x),**/?(*.)(spec|test).js?(x) - 0 matches
+  testPathIgnorePatterns: /node_modules/ - 28 matches
+Pattern: "" - 0 matches
+✨  Done in 0.87s.
+
+```
+
+add a file ending with ".test.js"
+
+### setup Jest in watch mode
+
+```
+yarn test -- --watch
+```
+
+## react-test-renderer
+
+```
+yarn add react-test-renderer@16.0.0
+```
+
 # Pure function
 
 ## only depends on its input
