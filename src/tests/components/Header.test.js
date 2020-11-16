@@ -1,12 +1,20 @@
 //react-test-renderer
 import React from 'react';
-//import { shallow } from 'enzyme';
-import ReactShallowRender from 'react-test-renderer/shallow';
+import { shallow } from 'enzyme';
+import toJSON from 'enzyme-to-json';
 import Header from '../../components/Header';
 
 test('should render Header correctly', () => {
-    const renderer = new ReactShallowRender();
-    renderer.render(<Header />);
-    expect(renderer.getRenderOutput()).toMatchSnapshot();
+    const wrapper = shallow(<Header />);
+    expect(toJSON(wrapper)).toMatchSnapshot();
+
+//    expect(wrapper.find('h1').length).toBe(1);
+//    expect(wrapper.find('h1').text()).toBe('Expensify');
+
+// Rest test renderer
+//    const renderer = new ReactShallowRender();
+//    renderer.render(<Header />);
+//    expect(renderer.getRenderOutput()).toMatchSnapshot();
+
     //console.log(renderer.getRenderOutput());
 });

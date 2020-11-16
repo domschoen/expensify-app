@@ -537,7 +537,15 @@ in package.json
 "test": "jest --config=jest.config.json" 
 ```
 
+## enzyme-to-json
 
+Google: enzyme-to-json
+
+```
+yarn add enzyme-to-json@3.0.1
+```
+
+automatic use of toJSON 
 
 # Pure function
 
