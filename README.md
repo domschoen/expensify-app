@@ -504,6 +504,41 @@ yarn test -- --watch
 yarn add react-test-renderer@16.0.0
 ```
 
+# Upgrade from React 15 to React v16
+
+Enzyme support 15 and 16.
+
+Enzyme 3 (AirBnB)
+
+```
+yarn add enzyme@3.0.0 enzyme-adapter-react-16@1.0.0 raf@3.3.2
+```
+
+Airbnb.io/enzyme
+
+Set a file "setupTests.js" inside "tests"
+
+see Jest to configure it for integration with Enzyme: https://jestjs.io/
+
+create a file jest.config.json with inside:
+
+```
+{
+  "setupFiles": [
+    "raf/polyfill",
+    "<rootDir>/src/tests/setupTests.js"
+  ]
+}
+```
+
+in package.json
+
+```
+"test": "jest --config=jest.config.json" 
+```
+
+
+
 # Pure function
 
 ## only depends on its input
