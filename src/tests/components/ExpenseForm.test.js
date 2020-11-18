@@ -85,7 +85,7 @@ test('should call onSubmit prop for valid form submission', () => {
     });
 });
 
-test('should set new date on date change', () => {
+test('should set new date on date change.', () => {
     const now = moment();
     const wrapper = shallow(<ExpenseForm />);
     // .prop to read props value of a component
