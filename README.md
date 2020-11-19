@@ -547,6 +547,189 @@ yarn add enzyme-to-json@3.0.1
 
 automatic use of toJSON 
 
+
+
+# Deployment
+
+## Git
+
+Create a repository
+
+```
+git init
+```
+
+will create the .git directory
+
+Git stages:
+
+- Untracked Files (add -> staged changes)
+- Unstaged Changes (add -> staged changes)
+- Staged Changes (commit -> Commits)
+- Commits (commits piles up and you can go to previous commit state)
+
+List all the recent commits done in the repository
+
+```
+git log
+```
+
+### Github
+
+Keys:
+
+```
+ls -a ~/.ssh
+```
+
+create ssh key-pair
+
+Google: GitHub connect with ssh keys
+
+```
+ssh-keygen -t rsa -b 4096 -C "dominique.schoenenberger@nagra.com"
+```
+
+use default
+
+It generates those files:
+
+- id_rsa
+- id_rsa.pub
+
+```
+eval "$s(ssh-agent -s)"
+```
+
+According to github guide to copy to clipboard
+
+```
+pbcopy < ~/.ssh/id_rsa.pub
+```
+
+In GitHub, go to your account in SSH Key and paste your pub key
+
+Verify
+
+```
+ssh -T git@github.com
+```
+
+To let git know what is our remote 
+
+```
+git remote add origin git@github.com:adnrewjmead/react-cours-2-expensidfy-app.git
+```
+
+```
+git remote
+```
+
+```
+git remote -v
+```
+
+```
+git push -u origin master
+```
+
+## webpack for production
+
+```
+yarn run build
+```
+
+gives the total webpack size
+
+Run webpack in production mode. See: https//webpack.js.org, then guide, Production
+
+use "-p" flag !
+
+```
+yarn run build:prod
+```
+
+=> total size drop from 8Mb to 7Mb
+
+Use "source-map" very slow but good for production
+
+```
+yarn run build:prod 
+```
+
+Generate 2 files 
+
+- bundle.js : 666 kB
+- Bundle.js.map : 4.71 Mb
+
+```
+npm run serve
+```
+
+### Package the css by creating separate CSS files
+
+currently in bundle.js which is not a good place for CSS. (For example, they are loaded only when javascript is loaded which can take some time)
+
+webpack will do it using a plugin called "extract-text-webpack-plugin"
+
+Google: extract-text-webpack-plugin
+
+```
+yarn add extract-text-webpack-plugin@3.0.0
+```
+
+change webpack.config.js and add:
+
+```
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+...
+const CSSExtract = new ExtractTextPlugin('styles.css');
+...
+                use: CSSExtract.extract({
+                    use: [
+                        'css-loader',
+                        'sass-loader'
+                    ]
+                })
+...
+        plugins: [
+            CSSExtract
+        ],
+```
+
+```
+yarn run build:prod 
+```
+
+add a link tag in index.html:
+
+```
+<link rel="stylesheet" type="text/css" href="/styles.css" />
+```
+
+Because current webpack devtool is buggy for dev, we are going to switch from "cheap-module-eval-source-map" to "inline-source-map" (slightly slower)
+
+Google: css-loader
+
+Change "css-loader" and "sass-loader" and put instead:
+
+```
+{
+	loader: 'css-loader',
+	options: {
+		sourceMap: true
+	}
+},
+{
+	loader: 'sass-loader',
+	options: {
+		sourceMap: true
+	}
+}
+```
+
+
+
 # Pure function
 
 ## only depends on its input
