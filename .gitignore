@@ -61,6 +61,10 @@ yarn-error.log*
 # Dependency directories
 node_modules/
 jspm_packages/
+public/bundle.js
+public/bundle.js.map
+public/styles.css
+public/styles.css.map
 
 # Optional npm cache directory
 .npm

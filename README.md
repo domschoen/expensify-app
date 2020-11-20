@@ -728,6 +728,82 @@ Change "css-loader" and "sass-loader" and put instead:
 }
 ```
 
+## Server for production
+
+at root of the project create a directory "server" and inside it a file "server.js"
+
+### Express
+
+A whole subject on its own.
+
+https://expressjs.com/
+
+Let's install the latest version
+
+```
+yarn add express@4.17.1
+```
+
+see express.js for how to configure
+
+```
+yarn run build:prod
+```
+
+```
+node server/server.js
+```
+
+http://localhost:3000/
+
+## Heroku
+
+host application.
+
+https://www.heroku.com/
+
+CLI
+
+```
+brew tap heroku/brew && brew install heroku
+```
+
+```
+heroku --version
+```
+
+```
+heroku login
+```
+
+```
+heroku create dschoen-react-expensify
+Creating ⬢ dschoen-react-expensify... done
+https://dschoen-react-expensify.herokuapp.com/ | https://git.heroku.com/dschoen-react-expensify.git
+```
+
+```
+git remote
+heroku
+origin
+```
+
+```
+git remote -v
+```
+
+Heroku will run "start" defined in package.json
+
+Heroku will not work with a statically defined port (3000) => change server.js to take into account a environment variable "PORT"
+
+We need also to teach Heroku how to run webpack (css are generated files)
+
+=> add in package.json, after "start"
+
+```
+"heroku-postbuild": "yarn run build:prod"
+```
+
 
 
 # Pure function
