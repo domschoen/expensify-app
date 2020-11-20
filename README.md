@@ -804,6 +804,17 @@ We need also to teach Heroku how to run webpack (css are generated files)
 "heroku-postbuild": "yarn run build:prod"
 ```
 
+```
+git push heroku HEAD:master
+```
+
+```
+git rm yarn.lock
+git rm package-lock.json
+```
+
+add back yarn.lock
+
 
 
 # Pure function
