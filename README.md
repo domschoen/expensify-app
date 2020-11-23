@@ -808,12 +808,85 @@ We need also to teach Heroku how to run webpack (css are generated files)
 git push heroku HEAD:master
 ```
 
+(not a good idea as we will see below but that was the successful path for me)
+
 ```
 git rm yarn.lock
 git rm package-lock.json
 ```
 
-add back yarn.lock
+add back yarn.lock to git
+
+```
+git push heroku HEAD:master
+```
+
+```
+heroku open
+```
+
+In case of error we can run
+
+```
+heroku logs
+```
+
+## Regular vs development dependencies
+
+If we want to install a dependencies (here chalk for example) but just for dev not for prod:
+
+```
+yarn add chalk --dev
+```
+
+to test is we can delete the node_modules and do:
+
+```
+yarn install --prod
+```
+
+to get all
+
+```
+yarn install
+```
+
+Https://webpack.js.org/configuration/dev-server/#devserver
+
+devServer.publicPath
+
+To verify, let's delete:
+
+- bundle.js
+- Bundle.js.map
+- Styles.css
+- Styles.css.map
+
+```
+yarn run dev-server
+```
+
+in dev no fils written in dist but if we use
+
+```
+yarn run build:prod
+```
+
+here they are in dist
+
+Let's now start the server
+
+```
+yarn run start
+```
+
+then verify by visiting: http://localhost:3000/
+
+.gitignore has to be modified and simply this can be used:
+
+```
+public/dist/
+```
 
 
 
