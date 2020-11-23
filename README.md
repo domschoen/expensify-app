@@ -888,6 +888,34 @@ then verify by visiting: http://localhost:3000/
 public/dist/
 ```
 
+```
+git commit -a -m 'Setup devDependencies and dist folder'
+git push
+git push heroku HEAD:master 
+```
+
+## New Feature Workflow
+
+run in one terminal:
+
+```
+yarn run dev-server
+```
+
+and in another one:
+
+```
+yarn test -- --watch
+```
+
+### Library to format currency
+
+numeraljs.com
+
+```
+yarn add numeral@2.0.6
+```
+
 
 
 # Pure function
