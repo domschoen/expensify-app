@@ -916,6 +916,30 @@ numeraljs.com
 yarn add numeral@2.0.6
 ```
 
+# Firebase
+
+DB released by Google.
+
+CRUD
+
+Https://firebase.google.com
+
+```
+yarn add firebase@8.1.1
+```
+
+```
+yarn remove firebase@8.1.1
+```
+
+
+
+
+
+```
+npm install -g firebase-tools
+```
+
 
 
 # Pure function
