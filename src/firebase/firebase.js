@@ -15,8 +15,25 @@ const firebaseConfig = {
     appId: "1:656055645830:web:0608f095b56f7de0620307"
   };
 // Initialize Firebase
-const db = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-firebase.database().ref().set({
-    name: 'Dominique Schoenenberger'
+db.ref().set({
+    name: 'Dominique Schoenenberger',
+    age: 26,
+    isSingle: false,
+    location: {
+        city: 'Philadelphia',
+        contry: 'United State'
+    }
 });
+
+//db.ref().set('This is my data.');
+
+db.ref('age').set(27);
+db.ref('location/city').set('Lausanne');
+db.ref('attributes').set({
+    height: 180,
+    weight: 120
+});
+
