@@ -940,6 +940,10 @@ yarn remove firebase@8.1.1
 npm install -g firebase-tools
 ```
 
+### Promises with Firebase
+
+https://firebase.google.com/docs 
+
 
 
 # Pure function
