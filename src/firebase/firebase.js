@@ -21,7 +21,11 @@ const db = firebase.database();
 db.ref().set({
     name: 'Dominique Schoenenberger',
     age: 26,
-    job: 'Software developer',
+    stressLevel: 6,
+    job: {
+        title: 'Software developer',
+        company: 'Google'
+    },
     location: {
         city: 'Philadelphia',
         contry: 'United State'
@@ -32,35 +36,9 @@ db.ref().set({
     console.log('This failed.', e);
 });
 
-//db.ref('isSingle')
-//    .remove()
-//    .then(() => {
-//       console.log('Data is removed')
-//    }).catch((e) => {
-//       console.log('This failed.', e);
-//    });
-//
-//db.ref()
-//    .remove()
-//    .then(() => {
-//       console.log('Data is removed')
-//    }).catch((e) => {
-//       console.log('This failed.', e);
-//    });
-
-
-// Other way but remove is more explicit
-//db.ref('isSingle').set(null);
-
-// Only at root level !! Country is lost ....
-//db.ref().update({
-//    job: 'Manager',
-//    location: {
-//        city: 'Buston'
-//    }
-//});
 
 db.ref().update({
-    job: 'Manager',
-    'location/city': 'Buston'
+    stressLevel: 9,
+    'job/company': 'Live',
+    'location/city': 'Zurich'
 });
