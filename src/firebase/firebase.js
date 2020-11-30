@@ -32,21 +32,29 @@ db.ref().set({
     console.log('This failed.', e);
 });
 
-//db.ref().set('This is my data.');
+//db.ref('isSingle')
+//    .remove()
+//    .then(() => {
+//       console.log('Data is removed')
+//    }).catch((e) => {
+//       console.log('This failed.', e);
+//    });
+//
+//db.ref()
+//    .remove()
+//    .then(() => {
+//       console.log('Data is removed')
+//    }).catch((e) => {
+//       console.log('This failed.', e);
+//    });
 
-//db.ref('age').set(54);
-//db.ref('location/city').set('Lausanne');
 
-// Setup then and catch make sure catch actually works
-// Switch rules to be open make sure that then runs
+// Other way but remove is more explicit
+//db.ref('isSingle').set(null);
 
-db.ref('attributes').set({
-    height: 180,
-    weight: 120
-}).then(() => {
-      console.log('Second set call saved')
-}).catch((e) => {
-      console.log('This failed.', e);
+db.ref().update({
+    name:'Mike',
+    age: 29,
+    job: 'Software developer',
+    isSingle: null
 });
-
-
