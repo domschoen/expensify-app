@@ -18,27 +18,59 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-db.ref().set({
-    name: 'Dominique Schoenenberger',
-    age: 26,
-    stressLevel: 6,
-    job: {
-        title: 'Software developer',
-        company: 'Google'
-    },
-    location: {
-        city: 'Philadelphia',
-        contry: 'United State'
-    }
-}).then(() => {
-    console.log('Data is saved')
-}).catch((e) => {
-    console.log('This failed.', e);
-});
+
+db.ref()
+    .on('value', (snapshot) => {
+        const val = snapshot.val();
+        console.log(val);
+    })
+
+setTimeout(() => {
+    db.ref('age').set(44);
+}, 3500);
+
+setTimeout(() => {
+    db.ref().off();
+}, 7000);
 
 
-db.ref().update({
-    stressLevel: 9,
-    'job/company': 'Live',
-    'location/city': 'Zurich'
-});
+setTimeout(() => {
+    db.ref('age').set(80);
+}, 10500);
+
+//db.ref('location/city')
+//    .once('value')
+//    .then((snapshot) => {
+//        const val = snapshot.val();
+//        console.log(val);
+//    })
+//    .catch((e) => {
+//         console.log('This failed.', e);
+//    })
+
+
+
+//db.ref().set({
+//    name: 'Dominique Schoenenberger',
+//    age: 26,
+//    stressLevel: 6,
+//    job: {
+//        title: 'Software developer',
+//        company: 'Google'
+//    },
+//    location: {
+//        city: 'Philadelphia',
+//        contry: 'United State'
+//    }
+//}).then(() => {
+//    console.log('Data is saved')
+//}).catch((e) => {
+//    console.log('This failed.', e);
+//});
+//
+//
+//db.ref().update({
+//    stressLevel: 9,
+//    'job/company': 'Live',
+//    'location/city': 'Zurich'
+//});
