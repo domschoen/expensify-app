@@ -21,7 +21,7 @@ const db = firebase.database();
 db.ref().set({
     name: 'Dominique Schoenenberger',
     age: 26,
-    isSingle: false,
+    job: 'Software developer',
     location: {
         city: 'Philadelphia',
         contry: 'United State'
@@ -52,9 +52,15 @@ db.ref().set({
 // Other way but remove is more explicit
 //db.ref('isSingle').set(null);
 
+// Only at root level !! Country is lost ....
+//db.ref().update({
+//    job: 'Manager',
+//    location: {
+//        city: 'Buston'
+//    }
+//});
+
 db.ref().update({
-    name:'Mike',
-    age: 29,
-    job: 'Software developer',
-    isSingle: null
+    job: 'Manager',
+    'location/city': 'Buston'
 });
