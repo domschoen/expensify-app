@@ -19,7 +19,8 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 const onValueChange = (snapshot) => {
-  console.log(snapshot.val());
+   const val = snapshot.val();
+  console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
 };
 const onError = (e) => {
   console.log('Error while fetching the data.', e);
@@ -29,17 +30,10 @@ const onValueChange2 = db.ref()
     .on('value', onValueChange, onError);
 
 setTimeout(() => {
-    db.ref('age').set(44);
+    db.ref('job').update({ company: 'EPFL'});
 }, 3500);
 
-setTimeout(() => {
-    db.ref().off(onValueChange2);
-}, 7000);
 
-
-setTimeout(() => {
-    db.ref('age').set(80);
-}, 10500);
 
 //db.ref('location/city')
 //    .once('value')
