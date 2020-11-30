@@ -18,19 +18,22 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
+const onValueChange = (snapshot) => {
+  console.log(snapshot.val());
+};
+const onError = (e) => {
+  console.log('Error while fetching the data.', e);
+};
 
-db.ref()
-    .on('value', (snapshot) => {
-        const val = snapshot.val();
-        console.log(val);
-    })
+const onValueChange2 = db.ref()
+    .on('value', onValueChange, onError);
 
 setTimeout(() => {
     db.ref('age').set(44);
 }, 3500);
 
 setTimeout(() => {
-    db.ref().off();
+    db.ref().off(onValueChange2);
 }, 7000);
 
 
