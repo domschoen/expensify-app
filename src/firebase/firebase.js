@@ -19,19 +19,49 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-db.ref('expenses')
-    .once('value')
-    .then((snapshot) => {
-        const expenses = [];
-        snapshot.forEach((childSnapshot) => {
-            expenses.push({
-                id: childSnapshot.key,
-                ...childSnapshot.val()
-            });
-        });
-        console.log(expenses);
-    });
+// child_removed subscription
+db.ref('expenses').on('child_removed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val());
+});
+// child_changed subscription
+db.ref('expenses').on('child_changed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val());
+});
 
+// child_added subscription
+// fired for existing data also
+db.ref('expenses').on('child_added', (snapshot) => {
+    console.log(snapshot.key, snapshot.val());
+});
+
+
+// Being notified of any change and display it as array
+//db.ref('expenses').on('value', (snapshot) => {
+//        const expenses = [];
+//        snapshot.forEach((childSnapshot) => {
+//            expenses.push({
+//                id: childSnapshot.key,
+//                ...childSnapshot.val()
+//            });
+//        });
+//        console.log(expenses);
+//
+//})
+//
+//
+//db.ref('expenses')
+//    .once('value')
+//    .then((snapshot) => {
+//        const expenses = [];
+//        snapshot.forEach((childSnapshot) => {
+//            expenses.push({
+//                id: childSnapshot.key,
+//                ...childSnapshot.val()
+//            });
+//        });
+//        console.log(expenses);
+//    });
+//
 
 //db.ref('expenses')
 //    .once('value')
