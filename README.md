@@ -932,13 +932,20 @@ yarn add firebase@8.1.1
 yarn remove firebase@8.1.1
 ```
 
-
-
-
-
 ```
 npm install -g firebase-tools
 ```
+
+### Firebase console
+
+! I need to be on VPN!!
+
+### Create Database
+
+https://console.firebase.google.com/
+
+- Click "Add project"
+  - Enter name "Expensify"
 
 ### Promises with Firebase
 
