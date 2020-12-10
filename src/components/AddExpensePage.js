@@ -1,12 +1,18 @@
 import React from 'react';
-import ExpenseForm from './ExpenseForm';
 import { connect } from 'react-redux';
-import { addExpense } from '../actions/expenses';
+import ExpenseForm from './ExpenseForm';
+import { startAddExpense } from '../actions/expenses';
 
 // add an export to test the unconnect version
 export class AddExpensePage extends React.Component {
     onSubmit = (expense) => {
-        this.props.addExpense(expense);
+        // firebase push
+        // attach then callback
+            // dispatch action
+            // redirect
+        // is it the best place ? No not in component
+        // => we are going to change the actions see actions/expenses.js
+        this.props.startAddExpense(expense);
         this.props.history.push('/');
     };
     render() {
@@ -22,9 +28,9 @@ export class AddExpensePage extends React.Component {
 }
 
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        addExpense: (expense) => dispatch(addExpense(expense))
+        startAddExpense: (expense) => dispatch(startAddExpense(expense))
     };
 }
 

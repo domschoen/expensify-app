@@ -951,6 +951,41 @@ https://console.firebase.google.com/
 
 https://firebase.google.com/docs 
 
+## Redux-thunk
+
+```
+yarn add redux-thunk@2.3.0
+```
+
+modify store/configureStore.js
+
+```
+import {applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+```
+
+then this would do the trick but we have commented devtools...
+
+```
+        applyMiddleware(thunk)
+        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+```
+
+If we don't want to loose devtools here what we have to do
+
+```...
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+...
+        composeEnhancers(applyMiddleware(thunk))
+...
+```
+
+### For testing: redux-mock-store
+
+```
+yarn add redux-mock-store@1.2.3
+```
+
 
 
 # Pure function

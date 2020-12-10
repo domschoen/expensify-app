@@ -1,34 +1,22 @@
 const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-        //resolve('This is my resolved data');
-
-        reject('Something went wrong'); // will throw an exception after 1.5s
-        // This below line is ignored because we can resolve only a single time
-        // and either resolve or reject
-        resolve('This is my other resolved data');
-    }, 1500)
+        resolve({
+            name: 'Andrew',
+            age: 26
+        });
+//        reject('Something went wrong'); // will throw an exception after 1.5s
+    }, 5000)
 });
 
-console.log('Request sent')
+console.log('before')
 
 promise.then((data) => {
     console.log('1', data);
-}, (error) => {
-    console.log('error', error);
-});
-
-/* long syntax for the catch but clearer !!!
-promise.then((data) => {
-    console.log('1', data);
+    return 'some data';
+}).then((str) => {
+    console.log('does this run?', str);
 }).catch((error) => {
     console.log('error', error);
-})
-*/
-
-/* you can attach more than one "then" to a promise
-promise.then((data) => {
-    console.log('2', data);
 });
-*/
 
-console.log('After')
+console.log('after')
